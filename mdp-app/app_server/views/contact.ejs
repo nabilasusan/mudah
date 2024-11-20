@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <p>ini halaman Contact</p>
+    
+    <div class="col-lg-6">
+        <form id="contactForm">
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control border border-primary" id="nama" placeholder="nama"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control border border-primary" id="email" placeholder="Email"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" class="form-control border border-primary" id="subject" placeholder="subject"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <input type="text" class="form-control border border-primary" id="message" placeholder="message"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send</button>
+            <!-- <button type="button" class="btn btn-default text-primary">Cancel</button> -->
+        </form>
+    </div>
+
+    <h2>Contact List</h2>
+    <ul id="contactList"></ul>
+
+    <script>
+        // Simpan data ke localStorage ketika tombol submit ditekan 
+        document
+            .getElementById("contactForm")
+            .addEventListener("submit", function (e) {
+                e.preventDefault(); // Mencegah form dari reload halaman setelah submit
+
+                // Ambil nilai dari input
+                const name = document.getElementById("nama").value;
+                const email = document.getElementById("email").value;
+                const subject = document.getElementById("subject").value;
+                const message = document.getElementById("message").value;
+
+                // Ambil daftar kontak lama dari localStorage, jika tidak ada data gunakan array kosong
+                let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+
+                // Tambahkan kontak baru ke daftar
+                contacts.push({ name, email, subject, message });
+                
+                // Simpan kembali daftar kontak ke localStorage
+                localStorage.setItem("contacts", JSON.stringify(contacts));
+
+                // Kosongkan form setelah submit
+                document.getElementById("contactForm").reset();
+
+                // Tampilkan daftar kontak yang sudah di-update
+                displayContacts();
+            });
+
+        // Fungsi untuk menampilkan data dari localStorage
+        function displayContacts() {
+            const contactList = document.getElementById("contactList");
+            contactList.innerHTML = ""; // Kosongkan list sebelumnya
+
+            // Ambil data kontak dari localStorage
+            const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+
+            // Loop untuk menampilkan setiap kontak
+            contacts.forEach((contact) => {
+                contactList.innerHTML += `<li>Nama: ${contact.name}, Email: ${contact.email}, Subject: ${contact.subject}, Message: ${contact.message}</li>`;
+            });
+        }
+
+        // Panggil fungsi untuk menampilkan kontak saat halaman pertama kali dimuat
+        window.onload = displayContacts;
+    </script>
+</body>
+</html>

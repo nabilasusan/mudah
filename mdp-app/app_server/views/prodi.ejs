@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th,td {
+            border: 1px solid salmon;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prodi</h1>
+    <!-- <ul>
+        <li><a href="/home">home</a></li>
+        <li><a href="/about">about us</a></li>
+        <li><a href="/contact">contact us</a></li>
+        <li><a href="/prodi">Prodi</a></li>
+    </ul> -->
+    <table>
+        <thead></thead>
+            <tr>
+                <th>Nama Prodi</th>
+                <th>Fakultas</th>
+                <th>Singkatan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% programstudi.forEach(prodi => { %>
+                <tr>
+                    <td><%= prodi.NamaProdi %></td>
+                    <td><%= prodi.fakultas_id && data.fakultas_id.nama ? data.fakultas_id.nama : 'Belum ada fakultas' %></td>
+                    <td><%= prodi.Singkatan %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
