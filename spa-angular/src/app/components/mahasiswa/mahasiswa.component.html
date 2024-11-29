@@ -1,9 +1,55 @@
-<div class="container my-5">
-    <h2>Data Mahasiswa</h2>
+<div class="container mt-4">
+    <!-- Kontainer utama untuk daftar fakultas, memberikan margin atas menggunakan kelas Bootstrap "mt-4". -->
+    <h2>Daftar Mahasiswa</h2>
+    <!-- Judul halaman untuk daftar fakultas -->
+    
+    <!-- Loader -->
+    <div class="d-flex justify-content-center mt-4" *ngIf="isLoading">
+      <!-- Loader ditampilkan jika properti `isLoading` bernilai true -->
+      <div class="spinner-border text-primary" role="status">
+        <!-- Komponen spinner Bootstrap untuk menampilkan animasi loading -->
+        <span class="visually-hidden">Loading...</span>
+        <!-- Teks alternatif untuk pembaca layar, membantu aksesibilitas -->
+      </div>
+    </div>
+  
+    <!-- Data Fakultas -->
+    <table class="table table-bordered table-striped" *ngIf="!isLoading">
+      <!-- Tabel ditampilkan hanya jika `isLoading` bernilai false -->
+      <thead>
+        <tr>
+          <!-- Baris header tabel -->
+          <th>Npm</th>
+          <th>Nama</th>
+          <th>Jenis Kelamin</th>
+          <th>Asal Sekolah</th>
+          <th>Foto</th>
+          <th>Prodi</th>
+          <!-- Kolom untuk menampilkan nama dekan -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of mahasiswa">
+          <!-- Iterasi melalui array `fakultas` untuk setiap elemen -->
+          <td>{{ item.npm }}</td>
+          <!-- Menampilkan properti `nama` dari setiap objek dalam array -->
+          <td>{{ item.nama}}</td>
+          <td>{{ item.jenis_kelamin}}</td>
+          <td>{{ item.asal_sekolah}}</td>
+          <td>{{ item.foto}}</td>
+          <td>{{ item.prodi_id.nama}}</td>
+          <!-- Menampilkan properti `singkatan` dari setiap objek dalam array -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<!-- http://localhost:3000/api/mahasiswa -->
+<!-- div class="container my-5">
+    <h2>Data Mahasiswa</h2>< -->
 
     <!-- Card Container untuk menampilkan Data Mahasiswa -->
-    <div class="row">
-        <!-- Card 1: Angelica Izabella -->
+    <!-- <div class="row">
+        
         <div class="col-md-4">
             <div class="card">
                 <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto Mahasiswa">
@@ -15,12 +61,12 @@
                     <a href="#" class="btn btn-primary">Lihat Detail</a>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Card 2: Mahasiswa Lain -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto Mahasiswa">
+        <!-- <div class="col-md-4"> -->
+            <!-- <div class="card"> -->
+                <!-- <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto Mahasiswa">
                 <div class="card-body">
                     <h5 class="card-title">Puspita Sari</h5>
                     <p class="card-text">NPM: 2226240123</p>
@@ -29,10 +75,10 @@
                     <a href="#" class="btn btn-primary">Lihat Detail</a>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Card 3: Mahasiswa Lain -->
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <div class="card">
                 <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto Mahasiswa">
                 <div class="card-body">
@@ -45,4 +91,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

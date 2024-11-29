@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';  // Mengimpor HttpClient untu
 })
 export class FakultasComponent implements OnInit {  // Deklarasi komponen dengan mengimplementasikan lifecycle hook OnInit
   fakultas: any[] = [];  // Mendeklarasikan properti fakultas yang akan menyimpan data yang diterima dari API
-  apiUrl = 'https://crud-express-seven.vercel.app/api/fakultas';  // URL API yang digunakan untuk mendapatkan data fakultas
+  apiUrl = 'http://localhost:3000/api/fakultas';  // URL API yang digunakan untuk mendapatkan data fakultas
   isLoading = true;  // Properti untuk status loading, digunakan untuk menunjukkan loader saat data sedang diambil
 
   private http = inject(HttpClient);  // Menggunakan inject untuk mendapatkan instance HttpClient di dalam komponen standalone (untuk Angular versi terbaru yang mendukung pendekatan ini)

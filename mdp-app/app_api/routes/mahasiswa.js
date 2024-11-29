@@ -8,7 +8,7 @@ const authMiddleware = require("../middleware/authmiddleware");
 const roleMiddleware = require("../middleware/roleMiddleware");
 
 // Route untuk mendapatkan semua data mahasiswa
-router.get("/", authMiddleware, mahasiswaController.getAllMahasiswa);
+router.get("/", mahasiswaController.getAllMahasiswa);
 // Mengarahkan ke fungsi getAllMahasiswa di controller untuk mengambil semua data mahasiswa
 
 // Route untuk mendapatkan data mahasiswa berdasarkan ID
