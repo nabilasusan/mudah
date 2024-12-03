@@ -1,94 +1,83 @@
 <div class="container mt-4">
-    <!-- Kontainer utama untuk daftar fakultas, memberikan margin atas menggunakan kelas Bootstrap "mt-4". -->
-    <h2>Daftar Mahasiswa</h2>
-    <!-- Judul halaman untuk daftar fakultas -->
-    
-    <!-- Loader -->
-    <div class="d-flex justify-content-center mt-4" *ngIf="isLoading">
-      <!-- Loader ditampilkan jika properti `isLoading` bernilai true -->
-      <div class="spinner-border text-primary" role="status">
-        <!-- Komponen spinner Bootstrap untuk menampilkan animasi loading -->
-        <span class="visually-hidden">Loading...</span>
-        <!-- Teks alternatif untuk pembaca layar, membantu aksesibilitas -->
+  <h2>Daftar Mahasiswa</h2>
+
+  <!-- Tombol untuk membuka modal -->
+  <button
+    type="button"
+    class="btn btn-primary mb-3"
+    data-bs-toggle="modal"
+    data-bs-target="#tambahMahasiswaModal"
+  >
+    Tambah Mahasiswa
+  </button>
+
+  <!-- Modal Tambah Fakultas -->
+  <div
+    class="modal fade"
+    id="tambahFakultasModal"
+    tabindex="-1"
+    aria-labelledby="tambahFakultasModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tambahFakultasModalLabel">
+            Tambah Mahasiswa
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="mahasiswaForm" (ngSubmit)="addMahasiswa()">
+            <div class="mb-3">
+              <label for="nama" class="form-label">Nama Mahasiswa</label>
+              <input
+                id="nama"
+                type="text"
+                class="form-control"
+                formControlName="nama"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="singkatan" class="form-label">Singkatan</label>
+              <input
+                id="singkatan"
+                type="text"
+                class="form-control"
+                formControlName="singkatan"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="isSubmitting"
+            >
+              {{ isSubmitting ? "Menyimpan..." : "Tambah Mahasiswa" }}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  
-    <!-- Data Fakultas -->
-    <table class="table table-bordered table-striped" *ngIf="!isLoading">
-      <!-- Tabel ditampilkan hanya jika `isLoading` bernilai false -->
-      <thead>
-        <tr>
-          <!-- Baris header tabel -->
-          <th>Npm</th>
-          <th>Nama</th>
-          <th>Jenis Kelamin</th>
-          <th>Asal Sekolah</th>
-          <th>Foto</th>
-          <th>Prodi</th>
-          <!-- Kolom untuk menampilkan nama dekan -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of mahasiswa">
-          <!-- Iterasi melalui array `fakultas` untuk setiap elemen -->
-          <td>{{ item.npm }}</td>
-          <!-- Menampilkan properti `nama` dari setiap objek dalam array -->
-          <td>{{ item.nama}}</td>
-          <td>{{ item.jenis_kelamin}}</td>
-          <td>{{ item.asal_sekolah}}</td>
-          <td>{{ item.foto}}</td>
-          <td>{{ item.prodi_id.nama}}</td>
-          <!-- Menampilkan properti `singkatan` dari setiap objek dalam array -->
-        </tr>
-      </tbody>
-    </table>
   </div>
-<!-- http://localhost:3000/api/mahasiswa -->
-<!-- div class="container my-5">
-    <h2>Data Mahasiswa</h2>< -->
 
-    <!-- Card Container untuk menampilkan Data Mahasiswa -->
-    <!-- <div class="row">
-        
-        <div class="col-md-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto Mahasiswa">
-                <div class="card-body">
-                    <h5 class="card-title">Angelica Izabella</h5>
-                    <p class="card-text">NPM: 2226240122</p>
-                    <p class="card-text">Jenis Kelamin: Perempuan</p>
-                    <p class="card-text">Prodi: Sistem Informasi</p>
-                    <a href="#" class="btn btn-primary">Lihat Detail</a>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- Card 2: Mahasiswa Lain -->
-        <!-- <div class="col-md-4"> -->
-            <!-- <div class="card"> -->
-                <!-- <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto Mahasiswa">
-                <div class="card-body">
-                    <h5 class="card-title">Puspita Sari</h5>
-                    <p class="card-text">NPM: 2226240123</p>
-                    <p class="card-text">Jenis Kelamin: Perempuan</p>
-                    <p class="card-text">Prodi: Teknik Informatika</p>
-                    <a href="#" class="btn btn-primary">Lihat Detail</a>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- Card 3: Mahasiswa Lain -->
-        <!-- <div class="col-md-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto Mahasiswa">
-                <div class="card-body">
-                    <h5 class="card-title">Nabila</h5>
-                    <p class="card-text">NPM: 2226240101</p>
-                    <p class="card-text">Jenis Kelamin: Perempuan</p>
-                    <p class="card-text">Prodi: Informatika</p>
-                    <a href="#" class="btn btn-primary">Lihat Detail</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
+  <!-- Data Fakultas -->
+  <table class="table table-bordered table-striped" *ngIf="!isLoading">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Singkatan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of fakultas">
+        <td>{{ item.nama }}</td>
+        <td>{{ item.singkatan }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
