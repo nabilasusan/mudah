@@ -71,12 +71,14 @@
       <tr>
         <th>Nama</th>
         <th>Singkatan</th>
+        <th>Fakultas</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of prodi">
         <td>{{ item.nama }}</td>
         <td>{{ item.singkatan }}</td>
+        <td>{{ item.fakultas_id.nama}}</td>
       </tr>
     </tbody>
   </table>

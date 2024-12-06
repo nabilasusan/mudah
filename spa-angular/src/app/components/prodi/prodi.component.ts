@@ -13,7 +13,7 @@ import * as bootstrap from 'bootstrap';
 })
 export class ProdiComponent implements OnInit {  // Deklarasi komponen dengan mengimplementasikan lifecycle hook OnInit
   prodi: any[] = [];  // Mendeklarasikan properti fakultas yang akan menyimpan data yang diterima dari API
-  apiUrl = 'https://crud-express-seven.vercel.app/api/prodi';  // URL API yang digunakan untuk mendapatkan data fakultas
+  apiUrl = '';  // URL API yang digunakan untuk mendapatkan data fakultas
   isLoading = true;  // Properti untuk status loading, digunakan untuk menunjukkan loader saat data sedang diambil
 
   prodiForm: FormGroup;  // Tambahkan untuk mengelola data formulir
@@ -27,7 +27,8 @@ export class ProdiComponent implements OnInit {  // Deklarasi komponen dengan me
     // Inisialisasi form dengan kontrol nama dan singkatan
     this.prodiForm = this.fb.group({
       nama: [''],
-      singkatan: ['']
+      singkatan: [''],
+      fakultas: [''],
     });
   }
 
@@ -51,7 +52,7 @@ export class ProdiComponent implements OnInit {  // Deklarasi komponen dengan me
   }
 
   // Method untuk menambahkan fakultas
-  addFakultas(): void {
+  addProdi(): void {
     if (this.prodiForm.valid) {
       this.isSubmitting = true;  // Set status submitting
       this.http.post(this.apiUrl, this.prodiForm.value).subscribe({
