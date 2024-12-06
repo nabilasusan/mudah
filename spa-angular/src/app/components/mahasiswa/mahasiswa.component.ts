@@ -8,12 +8,12 @@ import * as bootstrap from 'bootstrap';
   selector: 'app-mahasiswa',  // Nama selector untuk komponen ini. Komponen akan digunakan di template dengan tag <app-fakultas></app-fakultas>
   standalone: true,  // Menyatakan bahwa komponen ini adalah komponen standalone dan tidak membutuhkan module tambahan
   imports: [CommonModule, ReactiveFormsModule],  // Mengimpor CommonModule untuk memungkinkan penggunaan direktif Angular standar seperti *ngIf dan *ngFor di template
-  templateUrl: './fakultas.component.html',  // Path ke file template HTML untuk komponen ini
-  styleUrl: './fakultas.component.css'  // Path ke file CSS untuk komponen ini
+  templateUrl: './mahasiswa.component.html',  // Path ke file template HTML untuk komponen ini
+  styleUrl: './mahasiswa.component.css'  // Path ke file CSS untuk komponen ini
 })
 export class mahasiswaComponent implements OnInit {  // Deklarasi komponen dengan mengimplementasikan lifecycle hook OnInit
   mahasiswa: any[] = [];  // Mendeklarasikan properti fakultas yang akan menyimpan data yang diterima dari API
-  apiUrl = 'https://crud-express-seven.vercel.app/api/fakultas';  // URL API yang digunakan untuk mendapatkan data fakultas
+  apiUrl = 'https://crud-express-seven.vercel.app/api/mahasiswa';  // URL API yang digunakan untuk mendapatkan data fakultas
   isLoading = true;  // Properti untuk status loading, digunakan untuk menunjukkan loader saat data sedang diambil
 
   mahasiswaForm: FormGroup;  // Tambahkan untuk mengelola data formulir
@@ -51,7 +51,7 @@ export class mahasiswaComponent implements OnInit {  // Deklarasi komponen denga
   }
 
   // Method untuk menambahkan fakultas
-  addFakultas(): void {
+  addMahasiswa(): void {
     if (this.mahasiswaForm.valid) {
       this.isSubmitting = true;  // Set status submitting
       this.http.post(this.apiUrl, this.mahasiswaForm.value).subscribe({

@@ -1,26 +1,3 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-// import { FakultasComponent } from './fakultas.component';
-
-// describe('FakultasComponent', () => {
-//   let component: FakultasComponent;
-//   let fixture: ComponentFixture<FakultasComponent>;
-
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [FakultasComponent]
-//     })
-//     .compileComponents();
-
-//     fixture = TestBed.createComponent(FakultasComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
 import { CommonModule } from '@angular/common';  // Mengimpor CommonModule agar dapat menggunakan fitur-fitur dasar Angular seperti *ngIf dan *ngFor
 import { Component, OnInit, inject } from '@angular/core';  // Mengimpor dekorator Component, lifecycle hook OnInit, dan inject untuk injeksi HttpClient pada komponen standalone
 import { HttpClient } from '@angular/common/http';  // Mengimpor HttpClient untuk melakukan HTTP request
