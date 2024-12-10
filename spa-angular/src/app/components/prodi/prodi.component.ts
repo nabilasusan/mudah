@@ -12,8 +12,8 @@ import * as bootstrap from 'bootstrap';
   styleUrl: './prodi.component.css'  // Path ke file CSS untuk komponen ini
 })
 export class ProdiComponent implements OnInit {  // Deklarasi komponen dengan mengimplementasikan lifecycle hook OnInit
-  prodi: any[] = [];  // Mendeklarasikan properti fakultas yang akan menyimpan data yang diterima dari API
-  apiUrl = '';  // URL API yang digunakan untuk mendapatkan data fakultas
+  prodi: any[] = [];  // Mendeklarasikan properti prodi yang akan menyimpan data yang diterima dari API
+  apiUrl = '';  // URL API yang digunakan untuk mendapatkan data prodi
   isLoading = true;  // Properti untuk status loading, digunakan untuk menunjukkan loader saat data sedang diambil
 
   prodiForm: FormGroup;  // Tambahkan untuk mengelola data formulir
@@ -28,19 +28,19 @@ export class ProdiComponent implements OnInit {  // Deklarasi komponen dengan me
     this.prodiForm = this.fb.group({
       nama: [''],
       singkatan: [''],
-      fakultas: [''],
+      prodi: [''],
     });
   }
 
   ngOnInit(): void {  // Lifecycle hook ngOnInit dipanggil saat komponen diinisialisasi
-    this.getProdi();  // Memanggil method getFakultas saat komponen diinisialisasi
+    this.getProdi();  // Memanggil method getProdi saat komponen diinisialisasi
   }
 
-  getProdi(): void {  // Method untuk mengambil data fakultas dari API
+  getProdi(): void {  // Method untuk mengambil data prodi dari API
     // Mengambil data dari API menggunakan HttpClient
     this.http.get<any[]>(this.apiUrl).subscribe({
       next: (data) => {  // Callback untuk menangani data yang diterima dari API
-        this.prodi = data;  // Menyimpan data yang diterima ke dalam properti fakultas
+        this.prodi = data;  // Menyimpan data yang diterima ke dalam properti prodi
         console.log('Data Prodi:', this.prodi);  // Mencetak data fakultas di console untuk debugging
         this.isLoading = false;  // Mengubah status loading menjadi false, yang akan menghentikan tampilan loader
       },
@@ -51,14 +51,14 @@ export class ProdiComponent implements OnInit {  // Deklarasi komponen dengan me
     });
   }
 
-  // Method untuk menambahkan fakultas
+  // Method untuk menambahkan prodi
   addProdi(): void {
     if (this.prodiForm.valid) {
       this.isSubmitting = true;  // Set status submitting
       this.http.post(this.apiUrl, this.prodiForm.value).subscribe({
         next: (response) => {
           console.log('Data berhasil ditambahkan:', response);
-          this.getProdi();  // Refresh data fakultas
+          this.getProdi();  // Refresh data prodi
           this.prodiForm.reset();  // Reset formulir
           this.isSubmitting = false;  // Reset status submitting
 

@@ -1,6 +1,5 @@
 const Prodi = require("../models/prodi");
 
-
 const getAllProdi = async (req, res) =>{
     try {
         // mengambil semua fakultas dari database
