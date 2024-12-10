@@ -47,6 +47,7 @@ const createProdi = async (req, res) => {
 };
 
 const updateProdi = async (req, res) => {
+    const { nama, singkatan, fakultas_id } = req.body;
     try {
         // mencari fakultas berdasarkan id yang diberikan di parameter
         const prodi = await Prodi.findById(req.params.id);
@@ -54,22 +55,25 @@ const updateProdi = async (req, res) => {
         if (!prodi)
             return res.status(404).json({ message: "Prodi not found" });
         // memperbarui nama fakultas jika ada di request body
-        if (req.body.nama != null) {
-            prodi.nama = req.body.nama;
-        }
+        // if (req.body.nama != null) {
+        //     prodi.nama = req.body.nama;
+        // }
 
         // memperbarui singkatan fakultas jika ada di rquest body
-        if (req.body.singkatan != null) {
-            prodi.singkatan = req.body.singkatan;
-        }
-        if (res.body.fakultas_id != null){
-            prodi.fakultas_id = res.body.fakultas_id;
-        }
+        // if (req.body.singkatan != null) {
+        //     prodi.singkatan = req.body.singkatan;
+        // }
+        // if (res.body.fakultas_id != null){
+        //     prodi.fakultas_id = res.body.fakultas_id;
+        // }
+        prodi.nama = nama?? prodi.nama;
+        prodi.singkatan = singkatan ?? prodi.singkatan;
+        prodi.fakultas_id = fakultas_id ?? prodi.fakultas_id;
 
         // menyimpan perubahan ke database
-        const updateProdi = await prodi.save();
+        await prodi.save();
         // mengirimkan respons dengan status 200 dan data fakultas yang di perbarui
-        res.status(200).json(updateProdi);
+        res.json(prodi);
     }catch (err) {
         // mengirimkan respon dengan status 400 jika ada kesalahan saat memperbarui
         res.status(400).json({ message: err.message });
