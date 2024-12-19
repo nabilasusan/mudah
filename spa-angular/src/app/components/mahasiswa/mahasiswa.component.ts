@@ -72,7 +72,11 @@ export class MahasiswaComponent implements OnInit {  // Deklarasi komponen denga
   }
   deleteMahasiswa(_id: string): void {
     if (confirm('Apakah Anda yakin ingin menghapus data ini?')) { // Konfirmasi penghapusan
-      this.http.delete(`${this.apiMahasiswaUrl}/${_id}`).subscribe({
+
+      const token = localStorage.getItem('authToken');
+      const headers = { Authorization: `Bearer ${token}`};
+
+      this.http.delete(`${this.apiMahasiswaUrl}/${_id}`,{headers}).subscribe({
         next: () => {
           console.log(`mahasiswa dengan ID ${_id} berhasil dihapus`);
           this.getMahasiswa(); // Refresh data prodi setelah penghapusan
@@ -116,7 +120,11 @@ export class MahasiswaComponent implements OnInit {  // Deklarasi komponen denga
   updateMahasiswa(): void {
     if (this.mahasiswaForm.valid) {
       this.isSubmitting = true;
-      this.http.put(`${this.apiMahasiswaUrl}/${this.editMahasiswaId}`, this.mahasiswaForm.value).subscribe({
+
+      const token = localStorage.getItem('authToken');
+      const headers = { Authorization: `Bearer ${token}`};
+
+      this.http.put(`${this.apiMahasiswaUrl}/${this.editMahasiswaId}`, this.mahasiswaForm.value, {headers}).subscribe({
         next: (response) => {
           console.log('Mahasiswa berhasil diperbarui:', response);
           this.getMahasiswa(); // Refresh data prodi
@@ -141,7 +149,11 @@ export class MahasiswaComponent implements OnInit {  // Deklarasi komponen denga
   addMahasiswa(): void {
     if (this.mahasiswaForm.valid) {
       this.isSubmitting = true;  // Set status submitting
-      this.http.post(this.apiMahasiswaUrl, this.mahasiswaForm.value).subscribe({
+
+      const token = localStorage.getItem('authToken');
+      const headers = { Authorization: `Bearer ${token}`};
+
+      this.http.post(this.apiMahasiswaUrl, this.mahasiswaForm.value, {headers}).subscribe({
         next: (response) => {
           console.log('Data berhasil ditambahkan:', response);
           this.getMahasiswa();  // Refresh data fakultas

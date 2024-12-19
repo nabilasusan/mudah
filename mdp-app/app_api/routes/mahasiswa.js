@@ -16,15 +16,15 @@ router.get("/:id", mahasiswaController.getMahasiswaById);
 // Mengarahkan ke fungsi getMahasiswaById di controller untuk mengambil data mahasiswa berdasarkan ID
 
 // Route untuk menambahkan data mahasiswa baru, termasuk upload file foto
-router.post("/", mahasiswaController.createMahasiswa);
+router.post("/", authMiddleware, roleMiddleware("admin"), mahasiswaController.createMahasiswa);
 // Middleware `upload.single("foto")` menangani upload file dengan field `foto` sebelum fungsi createMahasiswa dijalankan
 
 // Route untuk memperbarui data mahasiswa, dengan upload foto opsional
-router.put("/:id", mahasiswaController.updateMahasiswa);
+router.put("/:id", authMiddleware, roleMiddleware("admin"), mahasiswaController.updateMahasiswa);
 // Middleware `upload.single("foto")` menangani upload file dengan field `foto` sebelum fungsi updateMahasiswa dijalankan
 
 // Route untuk menghapus data mahasiswa berdasarkan ID
-router.delete("/:id", mahasiswaController.deleteMahasiswa);
+router.delete("/:id", authMiddleware, roleMiddleware("admin"), mahasiswaController.deleteMahasiswa);
 // Mengarahkan ke fungsi deleteMahasiswa di controller untuk menghapus data mahasiswa berdasarkan ID
 
 module.exports = router; // Mengekspor router agar dapat digunakan di file lain
